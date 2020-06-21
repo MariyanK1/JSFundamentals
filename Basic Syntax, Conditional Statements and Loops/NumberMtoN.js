@@ -1,5 +1,5 @@
 /*
-Create a function that receives a number N and prints all the numbers from N to 1. Try using while loop
+Write a function that receives a number M and a number N (M will always be bigger than N). Print all numbers from M to N
 */
 
 function tralala (m, n) {
