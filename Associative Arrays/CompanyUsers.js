@@ -28,9 +28,9 @@ function companyUsers(input = []) {
             obj[company].push(ID)
         }
     }
-    let sorted = Object.entries(obj).sort();
 
-    let result = new Map(sorted);
+
+    let result = new Map(Object.entries(obj).sort());
 
     for (let [company, id] of result) {
         console.log(`${company}`);
