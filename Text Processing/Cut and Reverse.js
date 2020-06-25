@@ -11,11 +11,12 @@ return [
     .split('')
     .reverse()
     .join(''),
+    
     input
-        .substring(0, input.length / 2)
+        .substring(input.length / 2)
         .split('')
         .reverse()
-        .join('')
+        .join(''),
 ].join('\n')
 }
 
