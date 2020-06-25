@@ -2,7 +2,8 @@
 Write a JavaScript function to match full names from a list of names and print them on the console.
 
 First, write a regular expression to match a valid full name, according to these conditions:
-⦁	A valid full name has the following characteristics:
+
+A valid full name has the following characteristics:
 ⦁	It consists of two words.
 ⦁	Each word starts with a capital letter.
 ⦁	After the first letter, it only contains lowercase letters afterwards.
