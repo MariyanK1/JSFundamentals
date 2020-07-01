@@ -43,14 +43,13 @@ function followers(input = []) {
         name[1] = name[1].likes + name[1].comments;
     })
 
-    let sorted = arr.sort((a, b) => b[1] - a[1] && a[0] - a[0]);
+    let sorted = arr.sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 
     console.log(`${sorted.length} followers`);
     for (const line of sorted) {
         console.log(`${line[0]}: ${line[1]}`);
     }
 }
-
 followers([
     'Like: A: 3',
     'Comment: A',
