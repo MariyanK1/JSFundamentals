@@ -140,16 +140,16 @@ function needForSpeed(input = []) {
                 break;
         }
     }
-    
+
     function sortByMileage(a, b) {
-        a = a.mileage;
-        b = b.mileage;
+        a = a[1].mileage;
+        b = b[1].mileage;
 
         let comp = 0;
 
         if (b > a) {
             comp = 1;
-        } else {
+        } else if (a > b) {
             comp = -1
         }
 
@@ -157,13 +157,13 @@ function needForSpeed(input = []) {
     }
 
     function sortAlphabetically(a, b) {
-        a = arr[0][0];
-        b = arr[0][0];
+        a = arr[0];
+        b = arr[0];
 
         return a.localeCompare(b)
     }
-    
-    let arr = Object.entries(objCars).sort(sortByMileage || sortAlphabetically);
+
+    let arr = Object.entries(objCars).sort((a, b) => sortByMileage(a, b) || sortAlphabetically(a, b));
 
     for (let i = 0; i < arr.length; i++) {
         console.log(`${arr[i][0]} -> Mileage: ${arr[i][1].mileage} kms, Fuel in the tank: ${arr[i][1].fuel} lt.`);
