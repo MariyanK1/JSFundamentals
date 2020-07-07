@@ -1,3 +1,63 @@
+/*
+Warrior! Thank you for coming. The city is overrun by demons.
+We need your help securing the civilians and defending our land. For the Alliance!
+
+First, you will receive a skill that needs the deciphered.
+Next, you will be receiving commands split by a single space
+until you get the "For Azeroth" command.
+
+There are 5 possible commands:
+"GladiatorStance"
+Replace all letters with upper case and print the result.
+
+"DefensiveStance"
+Replace all letters with lower case and print the result.
+
+"Dispel {index} {letter}"
+Replace the letter at the index with the given one and print "Success!"
+If the index is invalid, print: "Dispel too weak."
+
+"Target Change {substring} {second substring}"
+Replace the first substring with the second and print the result.
+
+"Target Remove {substring}"
+Remove the substring from the string and print the result.
+
+If the input command is not in the list, print "Command doesn't exist!"
+
+Input / Constraints
+On the 1st line you are going to receive the string.
+On the next lines, until you receive "For Azeroth", you will be receiving commands.
+All commands are case sensitive.
+
+Output
+Print the output of the commands in the format described above.
+
+Sample Case:
+
+In:
+fr1c710n
+GladiatorStance
+Dispel 2 I
+Dispel 4 T
+Dispel 6 O
+Dispel 5 I
+Dispel 10 I
+Target Change RICTION riction
+For Azeroth
+
+Out:
+FR1C710N
+Success!
+Success!
+Success!
+Success!
+Dispel too weak.
+Friction
+*/
+
+
+
 function solve(input = []) {
 
     let inputString = input.shift();
