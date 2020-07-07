@@ -102,12 +102,11 @@ function x(input = []) {
                 break;
 
             default:
-                let prosper = people;
+                let prosper = Number(people);
 
                 if (prosper > 0) {
-                    resultObj[town] += prosper;
-                    let totalGold = resultObj[town].gold;
-                    console.log(`${prosper} gold added to the city treasury. ${town} now has ${totalGold} gold.`);
+                    resultObj[town].gold += prosper;
+                    console.log(`${prosper} gold added to the city treasury. ${town} now has ${resultObj[town].gold} gold.`);
                 } else {
                     console.log(`Gold added cannot be a negative number!`);
                 }
@@ -141,23 +140,18 @@ function x(input = []) {
         console.log("Ahoy, Captain! All targets have been plundered and destroyed!");
     } else {
         console.log(`Ahoy, Captain! There are ${arr.length} wealthy settlements to go to:`);
-
-        arr.forEach(town => {
-            console.log(`${town[0]} -> Population: ${town.population} citizens, Gold: ${town[0].gold} kg`);
-        })
+        for (let i = 0; i < arr.length; i++) {
+            console.log(`${arr[i][0]} -> Population: ${arr[i][1].population} citizens, Gold: ${arr[i][1].gold} kg`);
+        }
     }
 }
 
 x([
-    'Nassau||95000||1000',
-    'San Juan||930000||1250',
-    'Campeche||270000||690',
-    'Port Royal||320000||1000',
-    'Port Royal||100000||2000',
+    'Tortuga||345000||1250',
+    'Santo Domingo||240000||630',
+    'Havana||410000||1100',
     'Sail',
-    'Prosper=>Port Royal=>-200',
-    'Plunder=>Nassau=>94000=>750',
-    'Plunder=>Nassau=>1000=>150',
-    'Plunder=>Campeche=>150000=>690',
+    'Plunder=>Tortuga=>75000=>380',
+    'Prosper=>Santo Domingo=>180',
     'End'
 ])
