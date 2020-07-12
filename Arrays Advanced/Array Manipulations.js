@@ -22,6 +22,7 @@ In:
 
 Out:
 4 53 6 8 43 3
+*/
 
 function solve(array = []) {
 
