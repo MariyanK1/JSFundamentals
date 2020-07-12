@@ -37,8 +37,8 @@ function solve(array = []) {
                 break;
 
             case 'Remove':
-            outputNumbers = outputNumbers.filter(el => el !== +number);    
-            break;
+                outputNumbers = outputNumbers.filter(el => el !== +number);    
+                break;
 
             case 'RemoveAt':
                 outputNumbers.splice(+number, 1);
