@@ -39,44 +39,51 @@ Output:
   Ticket { destination: 'Philadelphia',
     price: 94.20,
     status: 'available' } ]
-['Philadelphia|94.20|available',
- 'New York City|95.99|available',
- 'New York City|95.99|sold',
- 'Boston|126.20|departed'],
-'status'	[ Ticket { destination: 'Philadelphia',
-    price: 94.20,
-    status: 'available' },
-  Ticket { destination: 'New York City',
-    price: 95.99,
-    status: 'available' },
-  Ticket { destination: 'Boston',
-    price: 126.20,
-    status: 'departed' },
-  Ticket { destination: 'New York City',
-    price: 95.99,
-    status: 'sold' } ]
 
 
 */
 
 
 function tickets(input = [], criteria) {
-    let obj = {}
-    for (const iterator of input) {
-        let [city, price, status] = iterator.split('|');
-        price = Number(price);
-        if (!obj.hasOwnProperty(city)) {
-            obj[city] = { price: price, status: status }
+    let result = [];
+    class Ticket {
+        constructor(destination, price, status) {
+            this.destination = destination;
+            this.price = Number(price);
+            this.status = status;
         }
-        obj[city] = { price: price, status: status }
-
     }
 
-    console.log(obj);
+    for (const line of input) {
+        let [city, price, status] = line.split('|');
+        let data = new Ticket(city, price, status);
+        result.push(data)
+    }
+
+    switch (criteria) {
+        case 'status':
+            result.sort((a, b) => a.status.localeCompare(b.status));
+            break;
+
+        case 'price':
+            result.sort((a, b) => a.price - b.price);
+            break;
+
+        case 'destination':
+            result.sort((a, b) => a.destination.localeCompare(b.destination));
+            break;
+
+        default:
+            break;
+    }
+
+    return result
 }
 
 tickets(['Philadelphia|94.20|available',
     'New York City|95.99|available',
     'New York City|95.99|sold',
+    'Boston|126.20|departed'],
+    'status') 
     'Boston|126.20|departed'],
     'destination')
