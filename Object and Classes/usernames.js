@@ -18,13 +18,11 @@ function solve(input = []) {
     let map = new Map;
 
     for (const name of input) {
-        if (!map.has(name)) {
-            map.set(name, 0)
-        }
+        map.set(name, 0)
     }
 
     let final = 
-    Array.from(map.keys())
-    .sort((a, b) => a.length - b.length || a.localeCompare(b))
-    .forEach(el => console.log(el))
+        Array.from(map.keys())
+        .sort((a, b) => a.length - b.length || a.localeCompare(b))
+        .forEach(n => console.log(n))
 }
