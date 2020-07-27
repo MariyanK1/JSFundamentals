@@ -51,7 +51,7 @@ There are 5 green and yellow pairs that meet all requirements and thus are valid
 
 function mirrorWords(input) {
     let pattern = /(@|#)(?<first>[A-Za-z]{3,})\1\1(?<second>[A-Za-z]{3,})\1/gm;
-    let matches = [...input.matchAll(pattern)]
+    let matches = [...input.shift().matchAll(pattern)]
     let mirrors = [];
     for (const match of matches) {
         let fistWord = match[2];
