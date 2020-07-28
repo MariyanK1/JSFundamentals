@@ -45,3 +45,51 @@ Output:
 **Tigers** 
 ::Mooning::
 */
+function emoji(input = '') {
+    input = input.shift()
+
+    let coolThreshold = input.match(/(\d+)/gm).join('').split('').map(Number).reduce((a, b) => a * b);
+    console.log(`Cool threshold: ${coolThreshold}`);
+
+    let emojisPattern = /(?<name>([*]{2})[A-Z][a-z]{2,}([*]{2})|([:]{2})[A-Z][a-z]{2,}([:]{2}))/g;
+
+    let matches = input.match(emojisPattern);
+
+    console.log(`${matches.length} emojis found in the text. The cool ones are:`);
+
+
+    for (const match of matches) {
+        if (match.includes("::")) {
+            let splitted = match.split('::');
+            let emoji = splitted[1]
+            let sum = 0;
+
+            for (let i = 0; i < emoji.length; i++) {
+                sum += emoji.charCodeAt(i);
+            }
+
+            if (sum > coolThreshold) {
+                console.log(match);
+            }
+
+
+        } else {
+            let splitted = match.split("**");
+            let emoji = splitted[1];
+            let sum = 0;
+
+            for (let i = 0; i < emoji.length; i++) {
+                sum += emoji.charCodeAt(i);
+            }
+
+            if (sum > coolThreshold) {
+                console.log(match);
+            }
+        }
+    }
+}
+
+emoji([
+    'In the Sofia Zoo there are 311 animals in total! ::Smiley:: This includes 3 **Tigers**, 1 ::Elephant:, 12 **Monk3ys**, 
+  a **Gorilla::, 5 ::fox:es: and 21 different types of :Snak::Es::. ::Mooning:: **Shy**'
+]);
