@@ -76,14 +76,21 @@ function songEncryption(input = []) {
                 if (artist[i] === artist[i].toUpperCase() && artist.charCodeAt(i) + encryptionKey > 90) {
                     encryptedLetter = String.fromCharCode(artist.charCodeAt(i) + encryptionKey - 26);
                     encryptedArtist += encryptedLetter;
-                } else if (artist[i] === artist[i].toLowerCase() && artist.charCodeAt(i) + encryptionKey > 122) {
+                }
+                
+                else if (artist[i] === artist[i].toLowerCase() && artist.charCodeAt(i) + encryptionKey > 122) {
                     encryptedLetter = String.fromCharCode(artist.charCodeAt(i) + encryptionKey - 26);
                     encryptedArtist += encryptedLetter;
-                } else if (artist[i] === ' ') {
+                }
+                
+                else if (artist[i] === ' ') {
                     encryptedArtist += ' ';
-                } else if (artist[i] === "'") {
+                }
+                
+                else if (artist[i] === "'") {
                     encryptedArtist += "'";
                 }
+                
                 else {
                     encryptedLetter = String.fromCharCode(artist.charCodeAt(i) + encryptionKey);
                     encryptedArtist += encryptedLetter;
@@ -96,14 +103,21 @@ function songEncryption(input = []) {
                 if (song[j] === song[j].toUpperCase() && song.charCodeAt(j) + encryptionKey > 90) {
                     letter = String.fromCharCode(song.charCodeAt(j) + encryptionKey - 26);
                     encryptedSong += letter;
-                } else if (song[j] === song[j].toLowerCase() && song.charCodeAt(j) + encryptionKey > 122) {
+                } 
+                
+                else if (song[j] === song[j].toLowerCase() && song.charCodeAt(j) + encryptionKey > 122) {
                     letter = String.fromCharCode(song.charCodeAt(j) + encryptionKey - 26);
                     encryptedSong += letter;
-                } else if (song[j] === ' ') {
+                }
+                
+                else if (song[j] === ' ') {
                     encryptedSong += ' ';
-                } else if (song[j] === "'") {
+                }
+                
+                else if (song[j] === "'") {
                     encryptedSong += "'";
                 }
+                
                 else {
                     letter = String.fromCharCode(song.charCodeAt(j) + encryptionKey);
                     encryptedSong += letter;
@@ -117,3 +131,11 @@ function songEncryption(input = []) {
         }
     }
 }
+
+songEncryption([
+    'Michael Jackson:ANOTHER PART OF ME',
+    'Adele:ONE AND ONLY',
+    "Guns n'roses:NOVEMBER RAIN",
+    'Christina Aguilera: HuRt',
+    'end'
+])
