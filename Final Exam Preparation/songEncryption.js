@@ -1,4 +1,4 @@
-Now that you've helped Mandy to accept the group applications it's time to assist her with a security problem.
+/*Now that you've helped Mandy to accept the group applications it's time to assist her with a security problem.
 You are tasked to encrypt all songs from the set list so that if someone steals it they won't be able to leak it online.
 Your task is to write a program that encrypts information about artists and their songs.
 
@@ -50,3 +50,70 @@ Successful encryption: Ksotks@BKTUS
 Successful encryption: Wtyvty alcv@YFXM
 Successful encryption: Iwfpj@STSXYTU
 Successful encryption: Fijqj@MJQQ
+*/
+
+function songEncryption(input = []) {
+    input = input.slice(0, input.indexOf('end'));
+
+    let artistPattern = /^[A-Z][a-z\s']+$/;
+    let songPattern = /^[A-Z\s]+$/;
+
+    for (const line of input) {
+        let tokens = line.split(':');
+        let artistMatch = tokens.shift().match(artistPattern);
+        let songMatch = tokens.shift().match(songPattern);
+
+        if (artistMatch && songMatch) {
+            let artist = artistMatch[0];
+            let song = songMatch[0];
+            let encryptionKey = artist.length;
+            let encryptedArtist = '';
+            let encryptedSong = '';
+
+            for (let i = 0; i < artist.length; i++) {
+                let encryptedLetter = 0;
+
+                if (artist[i] === artist[i].toUpperCase() && artist.charCodeAt(i) + encryptionKey > 90) {
+                    encryptedLetter = String.fromCharCode(artist.charCodeAt(i) + encryptionKey - 26);
+                    encryptedArtist += encryptedLetter;
+                } else if (artist[i] === artist[i].toLowerCase() && artist.charCodeAt(i) + encryptionKey > 122) {
+                    encryptedLetter = String.fromCharCode(artist.charCodeAt(i) + encryptionKey - 26);
+                    encryptedArtist += encryptedLetter;
+                } else if (artist[i] === ' ') {
+                    encryptedArtist += ' ';
+                } else if (artist[i] === "'") {
+                    encryptedArtist += "'";
+                }
+                else {
+                    encryptedLetter = String.fromCharCode(artist.charCodeAt(i) + encryptionKey);
+                    encryptedArtist += encryptedLetter;
+                }
+            }
+
+            for (let j = 0; j < song.length; j++) {
+                let letter = 0;
+
+                if (song[j] === song[j].toUpperCase() && song.charCodeAt(j) + encryptionKey > 90) {
+                    letter = String.fromCharCode(song.charCodeAt(j) + encryptionKey - 26);
+                    encryptedSong += letter;
+                } else if (song[j] === song[j].toLowerCase() && song.charCodeAt(j) + encryptionKey > 122) {
+                    letter = String.fromCharCode(song.charCodeAt(j) + encryptionKey - 26);
+                    encryptedSong += letter;
+                } else if (song[j] === ' ') {
+                    encryptedSong += ' ';
+                } else if (song[j] === "'") {
+                    encryptedSong += "'";
+                }
+                else {
+                    letter = String.fromCharCode(song.charCodeAt(j) + encryptionKey);
+                    encryptedSong += letter;
+                }
+            }
+
+            console.log(`Successful encryption: ${encryptedArtist}@${encryptedSong}`);
+
+        } else {
+            console.log('Invalid input!');
+        }
+    }
+}
