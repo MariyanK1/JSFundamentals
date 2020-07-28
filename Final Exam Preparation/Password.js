@@ -40,7 +40,7 @@ Try another password!
 */
 
 function pw(input = []) {
-    input.shift()
+    input.shift();
     let pattern = /^([\W]+|[a-z]+)\>(\d+)\|([a-z]+)\|([A-Z]+)\|([^<>]+)\<\1$/g;
     let validPassword = '';
 
@@ -48,7 +48,7 @@ function pw(input = []) {
         let match = pattern.exec(line);
 
         if (match !== null) {
-            validPassword = match[2].concat(match[3], match[4], match[5])
+            validPassword = match[2].concat(match[3], match[4], match[5]);
             console.log(`Password: ${validPassword}`);
         } else {
             console.log('Try another password!');
