@@ -4,7 +4,7 @@ Remember to include the appropriate flags in the regex.
 */
 
 let quote = "3 blind mice.";
-let myRegex = /([^\d])/gi;
+let myRegex = /([^\daeiou])/gi;
 let result = quote.match(myRegex);
 
 console.log(result);
