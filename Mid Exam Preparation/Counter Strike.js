@@ -25,15 +25,7 @@ should be print.
 Sample case:
 
 In:
-100
-10
-10
-10
-1
-2
-3
-73
-10
+[100, 10, 10, 10, 1, 2, 3, 73, 10]
 
 Out:
 Not enough energy! Game ends with 7 won battles and 0 energy
