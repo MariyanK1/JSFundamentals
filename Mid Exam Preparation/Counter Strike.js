@@ -2,8 +2,8 @@
 Write a program that keeps track of every won battle against an enemy. You will receive initial energy. 
 Afterwards you will start receiving the distance you need to go to reach an enemy until the "End of battle" 
 command is given, or until you run out of energy.
-T
-he energy you need for reaching an enemy is equal to the distance you receive. 
+
+The energy you need for reaching an enemy is equal to the distance you receive. 
 Each time you reach an enemy, your energy is reduced. This is considered a successful battle (win). 
 
 If you don't have enough energy to reach an the enemy, print:
