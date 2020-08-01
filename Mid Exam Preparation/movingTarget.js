@@ -73,7 +73,7 @@ function movingTarget(input = []) {
                     } else {
                         targets.splice(index - value, index + value)
                     }
-
+                break;
             }
         }
     }
