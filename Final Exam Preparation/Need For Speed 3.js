@@ -86,7 +86,7 @@ function needForSpeed(input = []) {
         fuel = Number(fuel);
 
         if (!objCars.hasOwnProperty(carModel)) {
-            objCars[carModel] = { mileage: mileage, fuel: fuel }
+            objCars[carModel] = { mileage, fuel }
         }
     }
 
