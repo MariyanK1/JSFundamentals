@@ -77,9 +77,7 @@ function x(input = []) {
         gold = Number(gold);
 
         if (!resultObj.hasOwnProperty(city)) {
-            resultObj[city] = {};
-            resultObj[city].population = population;
-            resultObj[city].gold = gold
+            resultObj[city] = {population, gold};
         } else {
             resultObj[city].population += population;
             resultObj[city].gold += gold;
