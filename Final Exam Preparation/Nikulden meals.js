@@ -78,15 +78,19 @@ Unliked meals: 1
 
         default:
           if (resultObj.hasOwnProperty(name)) {
+            
             if (resultObj[name].includes(meal)) {
               unliked++;
               resultObj[name].splice(resultObj[name].indexOf(meal), 1)
               console.log(`${name} doesn't like the ${meal}.`);
             }
+            
             else if (!resultObj[name].includes(meal)) {
               console.log(`${name} doesn't have the ${meal} in his/her collection.`);
             }
-          } else {
+          } 
+          
+          else {
             console.log(`${name} is not at the party.`);
           }
           break;
