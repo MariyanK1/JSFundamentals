@@ -19,11 +19,7 @@ function oddOrEven(array) {
         sum += array[i];        
     }
 
-    if (sum % 2 === 0) {
-        return 'even';
-    } else {
-        return 'odd';
-    }
+    return sum % 2 === 0 ? 'even' : 'odd';
 } 
 
 odd_or_even([0, -1, -5])
