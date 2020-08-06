@@ -67,7 +67,7 @@ function x(input = []) {
                 const health = +value1;
                 const energy = +value2;
                 if (!warriors.hasOwnProperty(name)) {
-                    warriors[name] = { health: health, energy: energy };
+                    warriors[name] = { health, energy };
                 } else {
                     warriors[name].health += health;
                     warriors[name].energy += energy;
