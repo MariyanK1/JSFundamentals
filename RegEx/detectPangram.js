@@ -14,13 +14,12 @@ function isPangram(string) {
         const el = string[i];
         if (el.match(/[a-z]/)) {
             obj.hasOwnProperty(string[i])
-            ? obj[string[i]]++
-            : obj[string[i]] = 0;
+            ? obj[el]++
+            : obj[el] = 0;
         }
     }
 
-    let arr = Object.entries(obj);
+    let resultArr = Object.entries(obj);
 
-    return arr.length === 26 ? true : false; 
-
+    return resultArr.length === 26 ? true : false; 
 }
