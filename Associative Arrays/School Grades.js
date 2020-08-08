@@ -1,4 +1,5 @@
 /*
+
 Write a function to store students with all of their grades. If a student appears more than once, 
 add the new grades. At the end print the students sorted by average grade. 
 The input comes as array of strings.
@@ -21,14 +22,17 @@ Tim: 5, 6, 6, 6
 function grades(input) {
     function average(a, b) {
         let aSum = 0;
+        
         for (let i = 0; i < a[1].length; i++) {
             aSum += a[1][i];
         }
 
         let bSum = 0;
+        
         for (let i = 0; i < b[1].length; i++) {
             bSum += b[1][i];           
         }
+        
         let aAverage = aSum / a[1].length;
         let bAverage = bSum / b[1].length;
 
