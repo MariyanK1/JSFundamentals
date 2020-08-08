@@ -1,4 +1,5 @@
 /*
+
 You are given an array of strings. Every odd string is representing a 
 resource (e.g. Gold, Silver, Copper, and so on), and every even – quantity. 
 
@@ -11,6 +12,7 @@ The quantities inputs will be in the range [1 … 2 000 000 000]
 */
 
 function minerTask(input = []) {
+    
     let map = new Map();
 
     for (let i = 0; i < input.length; i++) {
