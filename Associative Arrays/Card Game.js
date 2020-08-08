@@ -1,4 +1,5 @@
 /*
+
 You are given a sequence of people and for every person what cards he draws from the deck. 
 
 The input will be array of strings. Each string will be in format:
@@ -30,7 +31,6 @@ Output:
 Peter: 167
 Tomas: 175
 Andrea: 197
-
 
 */
 
