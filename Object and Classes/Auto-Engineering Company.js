@@ -22,7 +22,7 @@ received from that brand, should be the first printed and so on.
 
 Examples
 
-Input
+Input:
 ['Audi | Q7 | 1000',
 'Audi | Q6 | 100',
 'BMW | X5 | 1000',
@@ -34,7 +34,7 @@ Input
 'Citroen | C4 | 22',
 'Citroen | C5 | 10']
 
-Output
+Output:
 Audi
 ###Q7 -> 1000
 ###Q6 -> 100
