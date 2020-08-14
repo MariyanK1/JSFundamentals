@@ -1,5 +1,6 @@
 /*
-Create a program, that lists stores and the items that can be found in them. You are going to be receiving commands with the information you need until you get the "End" command. There are three possible commands:
+Create a program, that lists stores and the items that can be found in them. You are going to be receiving commands
+with the information you need until you get the "End" command. There are three possible commands:
 ⦁	"Add->{Store}->{Item}"
 ⦁	Add the store and the item in your diary. If the store already exists, add just the item.
 ⦁	"Add->{Store}->{Item},{Item1}…,{ItemN}"
@@ -57,13 +58,18 @@ function solve(input = []) {
 
         switch (command) {
             case 'Add':
-                items = items.split(',')
+                
                 if (!obj.hasOwnProperty(storeName)) {
                     obj[storeName] = [];
-                    obj[storeName].push(items);
+                    if (items.includes(',')) {
+                        items = items.split(',');
+                        obj[storeName].push(...items);
+                    } else {
+                        obj[storeName].push(items);
+                    };
                 } else {
                     obj[storeName].push(items);
-                }
+                };
                 break;
 
             case 'Remove':
@@ -74,6 +80,16 @@ function solve(input = []) {
         }
     }
 
+    let arr = Object.entries(obj).sort((a, b) => b[1].length - a[1].length || b[0].localeCompare(a[0]));
+
+    console.log('Stores list:');
+    
+    for (const store of arr) {
+      console.log(store[0]);
+      store[1].forEach(store => {
+          console.log(`<<${store}>>`);
+      })  
+    };
 }
 
 solve([
