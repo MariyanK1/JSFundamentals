@@ -29,43 +29,51 @@ Output
 Tomatoes, Potatoes, Bread
 */
 
-function solve(input) {
-    let shoppingList = input.shift().split('!');
-    let commands = input.shift();
+function solve(input = []) {
+    let initialList = input.shift().split('!');
+    let betterInput = input.slice(0, input.indexOf('Go Shopping!'));
 
-    while (commands !== 'Go Shopping!') {
-        let tokens = commands.split(' ');
-        let command = tokens[0];
-        let item = tokens[1];
-        let index = shoppingList.indexOf(item);
+    for (const line of betterInput) {
+        let [command, item, item2] = line.split(' ');
+
         switch (command) {
             case 'Urgent':
-                if (index < 0) {
-                    shoppingList.unshift(item);
+                if (!initialList.includes(item)) {
+                    initialList.unshift(item);
                 }
                 break;
+
             case 'Unnecessary':
-                if (index >= 0) {
-                    shoppingList.splice(index, 1);
+                if (initialList.includes(item)) {
+                    initialList.splice(initialList.indexOf(item), 1);
                 }
                 break;
+
             case 'Correct':
-                let newItem = tokens[2];
-                if (index >= 0) {
-                    shoppingList.splice(index, 1, newItem);
+                let newItem = item2;
+                if (initialList.includes(item)) {
+                    initialList.splice(initialList.indexOf(item), 1, newItem);
                 }
                 break;
+
             case 'Rearrange':
-                if (index >= 0) {
-                    shoppingList.splice(index, 1);
-                    shoppingList.push(item);
+                if (initialList.includes(item)) {
+                    let deletedItem = initialList.splice(initialList.indexOf(item), 1);
+                    initialList.push(deletedItem);
                 }
-                break;
-            default:
                 break;
         }
-        commands = input.shift();
     }
-    console.log(shoppingList.join(', '));
+
+    console.log(initialList.join(', '));
 }
 
+solve([
+    'Milk!Pepper!Salt!Water!Banana',
+    'Urgent Salt',
+    'Unnecessary Grapes ',
+    'Correct Pepper Onion',
+    'Rearrange Grapes',
+    'Correct Tomatoes Potatoes',
+    'Go Shopping!'
+]);
