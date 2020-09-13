@@ -2,15 +2,11 @@
 Write a function that counts the times each word occurs in a text. 
 Print the words sorted by count in descending order. 
 The input comes as an array of strings.
-
 Sample case:
-
 In:
 ["Here", "is", "the", "first", "sentence", "Here", "is", "another", "sentence",
 "And", "finally", "the", "third", "sentence"]
-
 Out:
-
 sentence -> 3 times
 Here -> 2 times
 is -> 2 times
@@ -20,7 +16,6 @@ another -> 1 times
 And -> 1 times
 finally -> 1 times
 third -> 1 times
-
 */
 
 function slv(input) {
@@ -37,9 +32,6 @@ function slv(input) {
         }
     }
 
-    let result = Array.from(map).sort((a, b) => b[1] - a[1]);
-
-    for (const x of result) {
-        console.log(`${x[0]} -> ${x[1]} times`);
-    }
+    let result = Array.from(map).sort((a, b) => b[1] - a[1]).forEach(el => {
+        console.log(`${el[0]} -> ${el[1]} times`)});
 }
