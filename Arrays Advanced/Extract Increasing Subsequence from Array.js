@@ -28,11 +28,13 @@ Out:
 24
 */
 
+
 function x(input = []) {
     let newArr = [input.shift()];
 
-    for (let i = 0; i < input.length; i++) {
-        input[i] > Math.max(...newArr) ? newArr.push(input[i]) : null
-    }
-    console.log(newArr.join('\n'));
+    input.map((v, i) => {
+        input[i] >= Math.max(...newArr) ? newArr.push(input[i]) : null
+    });
+    
+    return newArr.join('\n');
 }
