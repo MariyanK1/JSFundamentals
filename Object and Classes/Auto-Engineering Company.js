@@ -56,50 +56,46 @@ Lada
 
 
 
+function x(input = []) {
+    let obj = new Map;
 
-function cars(input = []) {
-    let carObj = {};
+    input.forEach(line => {
+        let [brand, model, quantity] = line.split(' | ');
+        quantity = Number(quantity);
 
-    for (const line of input) {
-        let tokens = line.split(/\b\s\|\s\b/);
-        let carBrand = tokens.shift();
-        let series = tokens[0]
-        let producedCars = Number(tokens[1])
-
-        if (!carObj.hasOwnProperty(carBrand)) {
-            carObj[carBrand] = [series, producedCars]
+        if (!obj.has(brand)) {
+            obj.set(brand, new Map)
+            obj.get(brand).set(model, quantity);
         } else {
-            if (carObj[carBrand].includes(series)) {
-                let index = carObj[carBrand].indexOf(series);
-                carObj[carBrand][index + 1] += producedCars
+            if (obj.get(brand).has(model)) {
+                const newQuantity = obj.get(brand).get(model) + quantity;
+                delete obj.get(brand).get(model);
+                obj.get(brand).set(model, newQuantity)
             } else {
-                carObj[carBrand].push(series, producedCars)
+                obj.get(brand).set(model, quantity);
             }
         }
-    }
+    });
 
-    let arr = Object.entries(carObj);
+    return Array.from(obj.keys()).forEach(brand => {
+            console.log(brand);
+            let arrBrands = Array.from(obj.get(brand).keys());
+            let arrProducedCars = Array.from(obj.get(brand).values());
 
-    for (const arrEl of arr) {
-        console.log(arrEl.shift())
-        let tokens = arrEl.shift();
-        while (tokens.length > 0) {
-            let series = tokens.shift();
-            let producedCars = tokens.shift();
-
-            console.log(`###${series} -> ${producedCars}`);
-        }
-    }
+            for (const brand of arrBrands) {
+                console.log(`###${brand} -> ${arrProducedCars.shift()}`);
+            }
+        });
 }
 
-cars([
-    'Mercedes-Benz | 50PS | 123',
-    'Mini | Clubman | 20000',
-    'Mini | Convertible | 1000',
-    'Mercedes-Benz | 60PS | 3000',
-    'Hyunday | Elantra GT | 20000',
-    'Mini | Countryman | 100',
-    'Mercedes-Benz | W210 | 100',
-    'Mini | Clubman | 1000',
-    'Mercedes-Benz | W163 | 200'
-])
+console.log(x([
+    'Audi | Q6 | 100',
+    'Audi | Q6 | 100',
+    'BMW | X5 | 1000',
+    'BMW | X6 | 100',
+    'Citroen | C4 | 123',
+    'Volga | GAZ-24 | 1000000',
+    'Lada | Niva | 1000000',
+    'Lada | Jigula | 1000000',
+    'Citroen | C4 | 22',
+    'Citroen | C5 | 10']))
