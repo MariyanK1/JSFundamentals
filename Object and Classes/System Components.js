@@ -75,57 +75,66 @@ Indice
 
 */
 
+function x(input = []) {
+    let obj = new Map;
 
-function components(data) {
-    let catalogue = new Map;
-    
-    for (let line of data) {
-        let [system, component, subComponent] = line.split(/\s\|\s/);
-        if (!catalogue.has(system)) {
-            catalogue.set(system, new Map);
+    input.forEach(line => {
+        let [systemName, componentName, subcomponentName] = line.split(' | ');
+
+        if (!obj.has(systemName)) {
+            obj.set(systemName, new Map);
         }
 
-        if (!catalogue.get(system).has(component)) {
-            catalogue.get(system).set(component, [])
+        if (!obj.get(systemName).has(componentName)) {
+            obj.get(systemName).set(componentName, [])
         }
-        catalogue.get(system).get(component).push(subComponent);
-    }
-    
-    function systemSort(sysA, sysB, catalogue) {
-        let aComponents = catalogue.get(sysA).size;
-        let bComponents = catalogue.get(sysB).size;
-        if (aComponents > bComponents) return -1;
-        if (aComponents < bComponents) return 1;
+
+        obj.get(systemName).get(componentName).push(subcomponentName);
+
+    });
+
+    return [...obj.keys()]
+        .sort((a, b) => systemSort(a, b, obj))
+        .forEach((systemName) => {
+            console.log(systemName);
+
+            const components = [...obj.get(systemName).keys()]
+                .sort((a, b) => obj.get(systemName).get(b).length - obj.get(systemName).get(b).length)
+                .forEach(componentName => {
+                    console.log(`|||${componentName}`);
+                    for (const subcomponent of obj.get(systemName).get(componentName)) {
+                        console.log(`||||||${subcomponent}`);
+                    };
+                });
+        });
+
+    function systemSort(sysA, sysB, obj) {
+
+        let aComponents = obj.get(sysA).size;
+        let bComponents = obj.get(sysB).size;
+
+        if (aComponents > bComponents) {
+            return -1;
+        };
+
+        if (aComponents < bComponents) {
+            return 1;
+        };
 
         return sysA.toLowerCase().localeCompare(sysB.toLocaleLowerCase());
     }
-
-    let systems = [...catalogue.keys()].sort((a, b) => systemSort(a, b, catalogue));
-    for (let system of systems) {
-        console.log(system);
-        let components = [...catalogue.get(system).keys()].sort((s1, s2) => catalogue.get(system).get(s2).length - catalogue.get(system).get(s1).length);
-        for (let component of components) {
-            console.log(`|||${component}`);
-            for (let subComponent of catalogue.get(system).get(component)) {
-                console.log(`||||||${subComponent}`);
-            }
-        }
-    }
 }
 
-components(
-    ['SULS | Main Site | Home Page',
-        'SULS | Main Site | Login Page',
-        'SULS | Main Site | Register Page',
-        'SULS | Judge Site | Login Page',
-        'SULS | Judge Site | Submittion Page',
-        'Lambda | CoreA | A23',
-        'SULS | Digital Site | Login Page',
-        'Lambda | CoreB | B24',
-        'Lambda | CoreA | A24',
-        'Lambda | CoreA | A25',
-        'Lambda | CoreC | C4',
-        'Indice | Session | Default Storage',
-        'Indice | Session | Default Security'
-    ]
-)
+console.log(x(['SULS | Main Site | Home Page',
+    'SULS | Main Site | Login Page',
+    'SULS | Main Site | Register Page',
+    'SULS | Judge Site | Login Page',
+    'SULS | Judge Site | Submittion Page',
+    'Lambda | CoreA | A23',
+    'SULS | Digital Site | Login Page',
+    'Lambda | CoreB | B24',
+    'Lambda | CoreA | A24',
+    'Lambda | CoreA | A25',
+    'Lambda | CoreC | C4',
+    'Indice | Session | Default Storage',
+    'Indice | Session | Default Security']))
