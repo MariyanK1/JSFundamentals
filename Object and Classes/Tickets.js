@@ -46,6 +46,7 @@ Output:
 
 function tickets(input = [], criteria) {
     let result = [];
+
     class Ticket {
         constructor(destination, price, status) {
             this.destination = destination;
@@ -54,11 +55,12 @@ function tickets(input = [], criteria) {
         }
     }
 
-    for (const line of input) {
-        let [city, price, status] = line.split('|');
-        let data = new Ticket(city, price, status);
-        result.push(data)
-    }
+    input.forEach(line => {
+            const [destination, price, status] = line.split('|');
+            
+            const data = new Ticket(destination, price, status);
+            result.push(data);
+        });
 
     switch (criteria) {
         case 'status':
@@ -75,9 +77,9 @@ function tickets(input = [], criteria) {
 
         default:
             break;
-    }
+    };
 
-    return result
+    return result;
 }
 
 tickets(['Philadelphia|94.20|available',
