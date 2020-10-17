@@ -49,15 +49,15 @@ function solve(input = []) {
             result += daliyPlunder * 0.50;
         }
         if (i % 5 === 0) {
-            result -= result * 0.30
+            result -= result * 0.30;
         }
     }
 
     if (result >= goal) {
-        console.log(`Ahoy! ${result.toFixed(2)} plunder gained.`);
+        return `Ahoy! ${result.toFixed(2)} plunder gained.`;
     }
 
     else {
-        console.log(`Collected only ${((result / goal) * 100).toFixed(2)}% of the plunder.`);
+        return `Collected only ${((result / goal) * 100).toFixed(2)}% of the plunder.`;
     }
 }
