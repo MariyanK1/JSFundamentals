@@ -48,32 +48,30 @@ You made 7 cozonacs! Now you have 16 eggs and 2.45BGN left.
 */
 
 function solve(input) {
-    let budget = +input.shift();
-    let priceFlour = +input.shift();
+   let budget = Number(input.shift());
+   let priceFlour = Number(input.shift());
 
-    let priceEggs = priceFlour * 0.75;
-    let priceMilk = priceFlour * 1.25 * 1 / 4;
+   let priceEggs = priceFlour * 0.75;
+   let priceMilk = priceFlour * 1.25 * 1 / 4;
 
-    let totalPrice = priceFlour + priceEggs + priceMilk;
-
-
-    let breads = 0;
-    let eggs = 0;
-    let substractEggs = 0
-
-    while (budget - totalPrice > 0) {
-        breads++;
-        eggs = eggs + 3;
-          
-        if (breads % 3 === 0) {
-            substractEggs = breads - 2;
-            eggs -= substractEggs
-        }
+   let totalPrice = priceFlour + priceEggs + priceMilk;
 
 
-        budget -= totalPrice; 
+   let breads = 0;
+   let eggs = 0;
+   let substractEggs = 0
 
-    }
-    console.log(`You made ${breads} cozonacs! Now you have ${eggs} eggs and ${budget.toFixed(2)}BGN left.`);
+   while (budget - totalPrice > 0) {
+      breads++;
+      eggs = eggs + 3;
 
+      if (breads % 3 === 0) {
+         substractEggs = breads - 2;
+         eggs -= substractEggs
+      }
+
+      budget -= totalPrice;
+
+   }
+   return `You made ${breads} cozonacs! Now you have ${eggs} eggs and ${budget.toFixed(2)}BGN left.`;
 }
