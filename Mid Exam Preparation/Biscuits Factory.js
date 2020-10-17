@@ -51,29 +51,29 @@ You produce 7.25 percent more biscuits.
 */
 
 function solve(input = []) {
-    let biscuitsPerDay = +input.shift();
-    let workersNum = +input.shift();
-    let competion = +input.shift();
-    let sum = 0;
-    let percent = 0;
+   let biscuitsPerDay = +input.shift();
+   let workersNum = +input.shift();
+   let competion = +input.shift();
+   let sum = 0;
+   let percent = 0;
 
-    for (let i = 1; i <= 30; i++) {
-        
-        if (i % 3 === 0) {
-            sum += Math.floor(0.75 * biscuitsPerDay * workersNum);
-        } else {
-            sum += biscuitsPerDay * workersNum;
-        }
-    }
-    console.log(`You have produced ${sum} biscuits for the past month.`);
+   for (let i = 1; i <= 30; i++) {
 
-    if (sum >= competion) {
-        let diff = sum - competion;
-        percent = diff / competion * 100;
-        console.log(`You produce ${percent.toFixed(2)} percent more biscuits.`);
-    } else {
-        let diff = competion - sum;
-        percent = diff / competion * 100;
-        console.log(`You produce ${percent.toFixed(2)} percent less biscuits.`);
-    }
+      if (i % 3 === 0) {
+         sum += Math.floor(0.75 * biscuitsPerDay * workersNum);
+      } else {
+         sum += biscuitsPerDay * workersNum;
+      }
+   }
+   console.log(`You have produced ${sum} biscuits for the past month.`);
+
+   if (sum >= competion) {
+      let diff = sum - competion;
+      percent = diff / competion * 100;
+      return `You produce ${percent.toFixed(2)} percent more biscuits.`;
+   } else {
+      let diff = competion - sum;
+      percent = diff / competion * 100;
+      return `You produce ${percent.toFixed(2)} percent less biscuits.`;
+   }
 }
