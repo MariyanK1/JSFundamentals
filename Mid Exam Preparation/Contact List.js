@@ -48,56 +48,64 @@ Contacts: Alisson Bellamy Bellamy Candace
 */
 
 function solve(input = []) {
-    let contacts = input.shift().split(' ');
+   let contacts = input.shift().split(' ');
 
-    while (input.length !== 0) {
-        let tokens = input.shift().split(' ');
-        let action = tokens.shift();
-        if (action === 'Add') {
+   while (input.length !== 0) {
+      let tokens = input.shift().split(' ');
+      let action = tokens.shift();
+
+      switch (action) {
+         case 'Add':
             let name = tokens[0];
-            let i = +tokens[1];
-            if (
-                contacts.indexOf(name) >= 0 &&
-                i >= 0 &&
-                i < contacts.length
-            ) {
-                contacts.splice(i, 0, name)
+            let i = Number(tokens[1]);
+
+            if (contacts.indexOf(name) >= 0 && i >= 0 && i < contacts.length) {
+               contacts.splice(i, 0, name);
             }
 
-            else if (contacts.indexOf(name) === -1) {
-                contacts.push(name)
+            if (!contacts.indexOf(name)) {
+               contacts.push(name);
             }
-        } else if (action === 'Remove') {
-            let i = +tokens[0];
+            break;
 
-            if (i >= 0 && i < contacts.length) {
-                contacts.splice(i, 1)
+         case 'Remove':
+            let index = Number(tokens[0]);
+
+            if (index >= 0 && index < contacts.length) {
+               contacts.splice(index, 1)
             }
-        } else if (action === 'Export') {
-            let startIndex = +tokens[0];
-            let count = +tokens[1];
+            break;
+
+         case 'Export':
+            let startIndex = Number(tokens[0]);
+            let count = Number(tokens[1]);
 
             if (count > contacts.length) {
-                let el = [];
-                for (let i = startIndex; i < contacts.length; i++) {
-                    let element = contacts[i];
-                    el.push(element)
-                }
-                console.log(el.join(' '));
+
+               let el = contacts.slice(startIndex, contacts.length);
+
+               console.log(el.join(' '));
+
             } else if (startIndex < contacts.length && startIndex >= 0) {
-                let names = [];
-                for (let i = startIndex; i < count; i++) {
-                    let element = contacts[i];
-                    names.push(element)
-                }
-                console.log(names.join(' '));
+
+               let names = contacts.slice(startIndex, count + 1);
+
+               console.log(names.join(' '));
             }
-        } else if (action === 'Print') {
-            if (tokens[0] === 'Normal') {
-                console.log(`Contacts: ${contacts.join(' ')}`);
-            } else {
-                console.log(`Contacts: ${contacts.reverse().join(' ')}`);
-            }
-        }
-    }
+            break;
+
+         case 'Print':
+            return tokens[0] === 'Normal'
+               ? `Contacts: ${contacts.join(' ')}`
+               : `Contacts: ${contacts.reverse().join(' ')}`;
+      }
+   }
 }
+
+console.log(solve([
+   'Alisson Bellamy Candace Tristan mariyan dragan kolio',
+   'Remove 3',
+   'Export 1 3',
+   'Add Bellamy 2',
+   'Print Normal'
+]))
