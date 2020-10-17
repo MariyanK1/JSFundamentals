@@ -32,27 +32,30 @@ Not enough energy! Game ends with 7 won battles and 0 energy
 */
 
 function solve(input = []) {
-    
-    let health = Number(input.shift());
-    
-    for (const commands of input) {
-        if (commands !== 'End of battle') {
-            let energy = Number(commands);
-            if (health - energy < 0) {
-                console.log(`Not enough energy! Game ends with ${wonBattle} won battles and ${health} energy`);
-                return;
-            }
 
-            health -= energy;
-            wonBattle++;
-        }
+   let health = Number(input.shift());
 
-        else {
-            console.log(`Won battles: ${wonBattle}. Energy left: ${health}`);
-        }
+   for (const commands of input) {
 
-        if (wonBattle % 3 === 0) {
-            health += wonBattle;
-        }
-    }
+      if (commands !== 'End of battle') {
+
+         let energy = Number(commands);
+
+         if (health - energy < 0) {
+            console.log(`Not enough energy! Game ends with ${wonBattle} won battles and ${health} energy`);
+            return;
+         }
+
+         health -= energy;
+         wonBattle++;
+      }
+
+      else {
+         console.log(`Won battles: ${wonBattle}. Energy left: ${health}`);
+      }
+
+      if (wonBattle % 3 === 0) {
+         health += wonBattle;
+      }
+   }
 }
