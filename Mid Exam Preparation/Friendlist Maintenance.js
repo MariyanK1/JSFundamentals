@@ -67,7 +67,7 @@ function solve(input = []) {
     switch (curr[0]) {
       case "Blacklist":
         let name = curr[1];
-        if (names.indexOf(name) === -1) {
+        if (!names.indexOf(name)) {
           console.log(`${name} was not found.`);
           break;
         } else {
@@ -82,7 +82,7 @@ function solve(input = []) {
         }
         break;
       case "Error":
-        let index = +curr[1];
+        let index = Number(curr[1]);
         let n = names[index];
         if (names[index] !== "Blacklisted" && names[index] !== "Lost") {
           names[index] = "Lost";
@@ -93,7 +93,7 @@ function solve(input = []) {
         break;
 
       case "Change":
-        let i = +curr[1];
+        let i = Number(curr[1]);
         let y = curr[2];
 
         if (i >= 0 && i < names.length) {
