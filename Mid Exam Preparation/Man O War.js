@@ -79,67 +79,67 @@ function solve(input = []) {
     while ((commands = input.shift()) !== 'Retire') {
         let tokens = commands.split(' ');
         let action = tokens.shift();
+        switch (action) {
+            case 'Fire':
+                let i = NumberNumber(tokens[0]);
+                let dmg = NumberNumber(tokens[1]);
 
-        if (action === 'Fire') {
-            let i = +tokens[0];
-            let dmg = +tokens[1];
-
-            if (i < warShip.length && i >= 0) {
-                if (warShip[i] - dmg <= 0) {
-                    console.log("You won! The enemy ship has sunken.");
-                    return;
-                } else {
-                    warShip[i] -= dmg;
-                }
-            }
-        }
-
-        else if (action === 'Defend') {
-            let startIndex = +tokens[0];
-            let endIndex = +tokens[1];
-            let dmg = +tokens[2];
-
-            if (
-                startIndex < pirateShip.length &&
-                startIndex >= 0 &&
-                endIndex < pirateShip.length &&
-                endIndex >= 0
-            ) {
-                for (let i = startIndex; i <= endIndex; i++) {
-                    pirateShip[i] -= dmg
-
-                    if (pirateShip[i] <= 0) {
-                        console.log("You lost! The pirate ship has sunken.");
+                if (i < warShip.length && i >= 0) {
+                    if (warShip[i] - dmg <= 0) {
+                        console.log("You won! The enemy ship has sunken.");
                         return;
+                    } else {
+                        warShip[i] -= dmg;
                     }
                 }
-            }
-        }
+                break;
 
-        else if (action === 'Repair') {
-            let i = +tokens[0];
-            let health = +tokens[1];
+            case 'Defend':
+                let startIndex = Number(tokens[0]);
+                let endIndex = Number(tokens[1]);
+                let dmg = Number(tokens[2]);
 
-            if (i < pirateShip.length && i >= 0) {
+                if (
+                    startIndex < pirateShip.length &&
+                    startIndex >= 0 &&
+                    endIndex < pirateShip.length &&
+                    endIndex >= 0
+                ) {
+                    for (let i = startIndex; i <= endIndex; i++) {
+                        pirateShip[i] -= dmg
 
-                if (pirateShip[i] + health > maxHealth) {
-                    pirateShip[i] = maxHealth;
-                } else {
-                    pirateShip[i] += health;
+                        if (pirateShip[i] <= 0) {
+                            console.log("You lost! The pirate ship has sunken.");
+                            return;
+                        }
+                    }
                 }
-            }
-        }
+                break;
 
-        else if (action === 'Status') {
-            let count = 0;
-            for (let i = 0; i < pirateShip.length; i++) {
+            case 'Repair':
+                let i = Number(tokens[0]);
+                let health = Number(tokens[1]);
 
-                if (pirateShip[i] < maxHealth * 0.20) {
-                    count++;
+                if (i < pirateShip.length && i >= 0) {
+
+                    if (pirateShip[i] + health > maxHealth) {
+                        pirateShip[i] = maxHealth;
+                    } else {
+                        pirateShip[i] += health;
+                    }
                 }
-            }
+                break;
+            case 'Status':
+                let count = 0;
+                for (let i = 0; i < pirateShip.length; i++) {
 
-            console.log(`${count} sections need repair.`);
+                    if (pirateShip[i] < maxHealth * 0.20) {
+                        count++;
+                    }
+                }
+
+                console.log(`${count} sections need repair.`);
+                break;
         }
     }
     let pirateShipStatus = 0;
