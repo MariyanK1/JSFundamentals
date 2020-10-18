@@ -54,11 +54,11 @@ function solve(input = []) {
     let commandCount = Number(input.shift());
 
     for (let i = 1; i <= commandCount; i++) {
-        let commands = input.shift().split(' ')
+        let commands = input.shift().split(' ');
 
         switch (commands[0]) {
             case 'Include':
-                shopList.push(commands[1])
+                shopList.push(commands[1]);
                 break;
             case 'Visit':
                 let firstOrLast = commands[1];
@@ -69,13 +69,13 @@ function solve(input = []) {
                     switch (firstOrLast) {
                         case 'first':
                             for (let i = 1; i <= numOfDeletes; i++) {
-                                shopList.shift()
+                                shopList.shift();
                             }
                             break;
 
                         case 'last':
                             for (let i = 1; i <= numOfDeletes; i++) {
-                                shopList.pop()
+                                shopList.pop();
                             }
                             break;
                     }
@@ -90,7 +90,7 @@ function solve(input = []) {
                     let indexEl = shopList[firstIndex];
                     let secIndexEl = shopList[secondIndex];
                     shopList.splice(firstIndex, 1, secIndexEl);
-                    shopList.splice(secondIndex, 1, indexEl)
+                    shopList.splice(secondIndex, 1, indexEl);
                 }
                 break;
 
@@ -99,7 +99,7 @@ function solve(input = []) {
                 let index = +commands[2];
 
                 if (shopList.length > index + 1) {
-                    shopList.splice(index + 1, 0, shop)
+                    shopList.splice(index + 1, 0, shop);
                 }
         }
     }
