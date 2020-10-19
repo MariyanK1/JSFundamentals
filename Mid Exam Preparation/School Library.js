@@ -74,7 +74,7 @@ function solve(input) {
             let iBook1 = shelfWithBooks.indexOf(book1);
             let iBook2 = shelfWithBooks.indexOf(book2);
             shelfWithBooks[iBook1] = book2;
-            shelfWithBooks[iBook2] = book1
+            shelfWithBooks[iBook2] = book1;
         }
     }
 
@@ -84,22 +84,34 @@ function solve(input) {
 
     function check(index) {
         if (index >= 0 && index < shelfWithBooks.length) {
-            return console.log(shelfWithBooks[+index]);
+            return console.log(shelfWithBooks[Number(index)]);
         }
     }
     while ((command = input.shift()) !== 'Done') {
         let tokens = command.split(' | ');
-        if (tokens[0] === 'Add Book') {
-            add(tokens[1]);
-        } else if (tokens[0] === 'Take Book') {
-            take(tokens[1])
-        } else if (tokens[0] === 'Swap Books') {
-            swap(tokens[1], tokens[2]);
-        } else if (tokens[0] === 'Insert Book') {
-            insert(tokens[1]);
-        } else {
-            check(tokens[1]);
+
+        switch (tokens[0]) {
+            case 'Add Book':
+                add(tokens[1]);
+                break;
+
+            case 'Take Book':
+                take(tokens[1]);
+                break;
+            
+            case 'Swap Books':
+                swap(tokens[1], tokens[2]);
+                break;
+            
+            case 'Insert Book':
+                insert(tokens[1]);
+                break;
+            
+            default:
+                check(tokens[1]);
+                break;
         }
+
     }
 
     console.log(shelfWithBooks.join(', '));
