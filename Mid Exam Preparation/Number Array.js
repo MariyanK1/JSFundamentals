@@ -56,46 +56,56 @@ function solve(input = []) {
         let tokens = commands.split(' ');;
         let action = tokens.shift();
 
-        if (action === 'Switch') {
-            let i = +tokens[0];
-            if (i >= 0 && i < numArr.length) {
-                if (numArr[i] > 0) {
-                    numArr[i] = numArr[i] *= -1;
-                } else {
-                    numArr[i] = numArr[i] *= 1
-                }
-            }
-        } else if (action === 'Change') {
-            let i = +tokens[0];
-            let value = +tokens[1];
+        switch (action) {
+            case 'Switch':
+                let i = Number(tokens[0]);
 
-            if (i < numArr.length && i >= 0) {
-                numArr.splice(i, 1, value);
-            }
-        } else if (action === 'Sum') {
-            if (tokens[0] === 'Negative') {
-                let sumNeg = 0;
-                for (let i = 0; i < numArr.length; i++) {
-                    if (numArr[i] < 0) {
-                        sumNeg += numArr[i];
-                    }
-                }
-                console.log(sumNeg);
-            } else if (tokens[0] === 'Positive') {
-                let sumPos = 0;
-                for (let i = 0; i < numArr.length; i++) {
+                if (i >= 0 && i < numArr.length) {
                     if (numArr[i] > 0) {
-                        sumPos += numArr[i];
+                        numArr[i] = numArr[i] *= -1;
+                    } else {
+                        numArr[i] = numArr[i] *= 1
                     }
                 }
-                console.log(sumPos);
-            } else if (tokens[0] === 'All') {
-                let totalSum = 0;
-                for (let i = 0; i < numArr.length; i++) {
-                    totalSum += numArr[i]
+                break;
+
+            case 'Change':
+                let i = Number(tokens[0]);
+                let value = Number(tokens[1]);
+
+                if (i < numArr.length && i >= 0) {
+                    numArr.splice(i, 1, value);
                 }
-                console.log(totalSum);
-            }
+                break;
+
+            case 'Sum':
+                if (tokens[0] === 'Negative') {
+                    let sumNeg = 0;
+
+                    for (let i = 0; i < numArr.length; i++) {
+                        if (numArr[i] < 0) {
+                            sumNeg += numArr[i];
+                        }
+                    }
+                    console.log(sumNeg);
+                } else if (tokens[0] === 'Positive') {
+                    let sumPos = 0;
+
+                    for (let i = 0; i < numArr.length; i++) {
+                        if (numArr[i] > 0) {
+                            sumPos += numArr[i];
+                        }
+                    }
+                    console.log(sumPos);
+                } else if (tokens[0] === 'All') {
+                    let totalSum = 0;
+
+                    for (let i = 0; i < numArr.length; i++) {
+                        totalSum += numArr[i]
+                    }
+                    console.log(totalSum);
+                }
+                break;
         }
     }
 
